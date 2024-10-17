@@ -1,4 +1,4 @@
-from gameparts import Board
+from gameparts import Board, save_result
 from gameparts.exceptions import GameFieldException, GameCellOccupaedError
 
 
@@ -42,9 +42,12 @@ def main() -> None:
         game.display()
 
         if game.check_win(current_player):
-            print(f'Победили {current_player}!')
+            result_str = f'Победили {current_player}!\n'
+            save_result(result_str)
+            print(result_str)
             running = False
         elif game.is_board_full():
+            save_result('Ничья!\n')
             print('Ничья!')
             running = False
 
